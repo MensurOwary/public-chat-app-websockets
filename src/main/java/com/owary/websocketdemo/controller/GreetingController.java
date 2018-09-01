@@ -16,7 +16,6 @@ public class GreetingController {
         newMessage.setName(HtmlUtils.htmlEscape(message.getName()));
         newMessage.setMessage(HtmlUtils.htmlEscape(message.getMessage()));
         newMessage.setAction(message.getAction());
-        System.out.println(newMessage);
         return newMessage;
     }
 

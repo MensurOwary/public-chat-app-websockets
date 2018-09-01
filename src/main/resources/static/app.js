@@ -31,12 +31,14 @@
             $message_input = $('.message_input');
             return $message_input.val();
         };
-        sendMessage = function (text, action) {
+        sendMessage = function (text, action, currentUser) {
             var $messages, message;
             if (text.trim() === '') {
                 return;
             }
-            $('.message_input').val('');
+            if(currentUser===$('#chat-box').data("username")) {
+                $('.message_input').val('');
+            }
             $messages = $('.messages');
             message = new Message({
                 text: text,
@@ -76,9 +78,9 @@
                         message_side='left';
                     }
                     if(action==='join'){
-                        sendMessage(usr+" joined!", 'join');
+                        sendMessage(usr+" joined!", 'join', usr);
                     }else{
-                        sendMessage(JSON.parse(greeting.body).message, null);
+                        sendMessage(JSON.parse(greeting.body).message, null, usr);
                     }
                 });
             });
